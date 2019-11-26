@@ -1,6 +1,6 @@
 version: "3.2"
 services:
-    oracle:
+  oracle:
     build: './oracle'
     ports:
       - 8080:8080
