@@ -13,6 +13,7 @@ RUN rm -fr /var/tmp/oracle-database-xe-18c-1.0-1.x86_64.rpm
 
 ADD init.ora /u01/app/oracle/product/11.2.0/xe/config/scripts/init.ora
 ADD initXETemp.ora /u01/app/oracle/product/11.2.0/xe/config/scripts/initXETemp.ora
+ADD xe.rsp /tmp/xe.rsp
 
 RUN /etc/init.d/oracle-xe-18c configure responseFile=/tmp/xe.rsp
 
@@ -21,9 +22,8 @@ RUN echo 'export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe' >> /etc/profile.
 RUN echo 'export PATH=$ORACLE_HOME/bin:$PATH' >> /etc/profile.d/oracle_profile.sh
 RUN echo 'export ORACLE_SID=XE' >> /etc/profile.d/oracle_profile.sh
 
-# Change the root and oracle password to oracle
-#RUN echo root:oracle | chpasswd
-#RUN echo oracle:oracle | chpasswd
+RUN echo "root:oracle" | chpasswd
+RUN echo "oracle:oracler" | chpasswd
 
 EXPOSE 1521
 EXPOSE 8080
