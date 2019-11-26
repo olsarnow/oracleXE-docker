@@ -14,7 +14,7 @@ RUN rm -fr /var/tmp/oracle-database-xe-18c-1.0-1.x86_64.rpm
 ADD init.ora /u01/app/oracle/product/11.2.0/xe/config/scripts/init.ora
 ADD initXETemp.ora /u01/app/oracle/product/11.2.0/xe/config/scripts/initXETemp.ora
 
-RUN /etc/init.d/oracle-xe configure responseFile=/tmp/xe.rsp
+RUN /etc/init.d/oracle-xe-18c configure responseFile=/tmp/xe.rsp
 
 # Create entries for the database in the profile
 RUN echo 'export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe' >> /etc/profile.d/oracle_profile.sh
@@ -28,5 +28,6 @@ RUN echo oracle:oracle | chpasswd
 EXPOSE 1521
 EXPOSE 8080
 
-CMD sed -i -E "s/HOST = [^)]+/HOST = $HOSTNAME/g" /u01/app/oracle/product/11.2.0/xe/network/admin/listener.ora; \
-service oracle-xe start
+CMD sed -i -E "s/HOST = [^)]+/HOST = $HOSTNAME/g" /u01/app/oracle/product/11.2.0/xe/network/admin/listener.ora
+
+CMD systemctl start oracle-xe-18c
