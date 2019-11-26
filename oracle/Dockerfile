@@ -22,8 +22,8 @@ RUN echo 'export PATH=$ORACLE_HOME/bin:$PATH' >> /etc/profile.d/oracle_profile.s
 RUN echo 'export ORACLE_SID=XE' >> /etc/profile.d/oracle_profile.sh
 
 # Change the root and oracle password to oracle
-RUN echo root:oracle | chpasswd
-RUN echo oracle:oracle | chpasswd
+#RUN echo root:oracle | chpasswd
+#RUN echo oracle:oracle | chpasswd
 
 EXPOSE 1521
 EXPOSE 8080
