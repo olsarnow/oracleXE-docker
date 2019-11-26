@@ -1,11 +1,11 @@
 version: "3.2"
 services:
-  oracle:
-  build: './oracle'
-  ports:
-    - 8080:8080
-    - 1521:1521
-  network:
-    - oranet
+    oracle:
+    build: './oracle'
+    ports:
+      - 8080:8080
+      - 1521:1521
+    networks:
+      - oranet
 networks:
   oranet:
